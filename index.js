@@ -14,7 +14,9 @@ var ssi = null,
 
 var verbosity = 'ignore';
 
-if (fs.existsSync(!path.join(os.homedir(), '.sigma'))) {
+let sdirpath = path.join(os.homedir(), '.sigma');
+
+if (fs.existsSync(sdirpath) == false) {
     fs.mkdirSync(path.join(os.homedir(), '.sigma'));
 }
 
