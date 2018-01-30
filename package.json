@@ -9,6 +9,7 @@
     "moment": "^2.20.1",
     "puppeteer": "0.10.2",
     "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "shelljs": "^0.8.1",
     "simple-node-logger": "^0.93.33",
     "validator": "^9.3.0"
