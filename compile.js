@@ -20,7 +20,7 @@ var questions = [{
     {
         type: 'input',
         name: 'password',
-        message: "Sigma Control 2 User ID",
+        message: "Sigma Control 2 User Password",
         default: function () {
             return 'admin123';
         }
