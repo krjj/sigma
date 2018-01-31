@@ -7,6 +7,19 @@ const config = require('./config');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
+const moment = require('moment');
+
+//logging setup
+log = SimpleNodeLogger.createSimpleLogger({
+    logFilePath: path.join(os.homedir(), '.sigma', 'sigmalog.log'),
+    timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS'
+});
+
+log.setLevel('info');
+
+log.info('Master monitor started ');
+//
+
 
 //init 
 var ssi = null,

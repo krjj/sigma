@@ -35,7 +35,8 @@ async function run() {
         args: ["--no-sandbox"],
         headless: true
     }).catch((e) => {
-        console.log("Cannot launch browser");
+        console.log("[iodisplayMsg] Cannot launch browser");
+        log.error("[iodisplayMsg] Cannot launch browser");
         process.exit();
     });
     const page = await browser.newPage();
