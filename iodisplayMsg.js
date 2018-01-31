@@ -32,7 +32,11 @@ if (store.get('messagesTS') != undefined) {
 async function run() {
     const browser = await puppeteer.launch({
         executablePath: config.brwExecPath,
+        args: ["--no-sandbox"],
         headless: true
+    }).catch((e) => {
+        console.log("Cannot launch browser");
+        process.exit();
     });
     const page = await browser.newPage();
     page.setRequestInterceptionEnabled(true); // intercept all requests made by browser
