@@ -8,6 +8,7 @@ const path = require('path');
 const os = require('os');
 const fs = require('fs');
 const moment = require('moment');
+const SimpleNodeLogger = require('simple-node-logger');
 
 //logging setup
 log = SimpleNodeLogger.createSimpleLogger({
