@@ -10,16 +10,6 @@ const fs = require('fs');
 const moment = require('moment');
 const SimpleNodeLogger = require('simple-node-logger');
 
-//logging setup
-log = SimpleNodeLogger.createSimpleLogger({
-    logFilePath: path.join(os.homedir(), '.sigma', 'sigmalog.log'),
-    timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS'
-});
-
-log.setLevel('info');
-
-log.info('Master monitor started ');
-//
 
 
 //init 
@@ -43,6 +33,17 @@ if (process.argv[2] == '-verbose') {
     console.error('Invalid arg');
     process.exit();
 }
+
+//logging setup
+log = SimpleNodeLogger.createSimpleLogger({
+    logFilePath: path.join(os.homedir(), '.sigma', 'sigmalog.log'),
+    timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS'
+});
+
+log.setLevel('info');
+
+log.info('Master monitor started');
+
 
 //console.log(fs.readdirSync(__dirname));
 
