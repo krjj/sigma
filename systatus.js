@@ -54,15 +54,17 @@ function updateLSR(data) {
 
 }
 
+
 async function run() {
     const browser = await puppeteer.launch({
         executablePath: config.brwExecPath,
         args: ["--no-sandbox"],
         headless: true
     }).catch((e) => {
-        console.log("Cannot launch browser");
         log.error("[systatus] Cannot launch browser");
-        process.exit();
+        setTimeout(() => {
+            process.exit();
+        }, 2000);
     });
     // path.join(process.cwd(), config.brwExecPath)
     const page = await browser.newPage();

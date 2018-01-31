@@ -35,9 +35,10 @@ async function run() {
         args: ["--no-sandbox"],
         headless: true
     }).catch((e) => {
-        console.log("[iodisplayMsg] Cannot launch browser");
         log.error("[iodisplayMsg] Cannot launch browser");
-        process.exit();
+        setTimeout(() => {
+            process.exit();
+        }, 2000);
     });
     const page = await browser.newPage();
     page.setRequestInterceptionEnabled(true); // intercept all requests made by browser
