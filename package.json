@@ -17,6 +17,10 @@
   "scripts": {
     "compile": "node compile.js"
   },
+  "pkg": {
+    "scripts": ["systatus.js", "iodisplayMsg.js"]
+  },
+  "bin": "index.js",
   "devDependencies": {
     "javascript-obfuscator": "^0.13.0",
     "pkg": "^4.3.0"

@@ -30,6 +30,8 @@ if (process.argv[2] == '-verbose') {
     process.exit();
 }
 
+//console.log(fs.readdirSync(__dirname));
+
 //
 
 
@@ -59,12 +61,11 @@ function addDelay(ms) {
     })
 }
 
-
 async function startMonitor(arg) {
 
     if (arg == 0 || arg == 2) {
         //start system status monitor
-        let ssi = childproc.spawn(process.argv[0], [path.join(process.cwd(), 'systatus.js')], {
+        let ssi = childproc.spawn(process.argv[0], [path.join(__dirname, 'systatus.js')], {
             stdio: verbosity
         });
 
@@ -80,7 +81,7 @@ async function startMonitor(arg) {
 
     if (arg == 1 || arg == 2) {
         //start IO Display and Msg monitor
-        idm = childproc.spawn(process.argv[0], [path.join(process.cwd(), 'iodisplayMsg.js')], {
+        idm = childproc.spawn(process.argv[0], [path.join(__dirname, 'iodisplayMsg.js')], {
             stdio: verbosity
         });
         idm.on('close', async () => {
