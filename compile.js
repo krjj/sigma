@@ -264,7 +264,7 @@ inquirer.prompt(questions2).then(async (answers2) => {
             console.log('\nBuilding binary file');
             fs.writeFileSync("config.js", "module.exports = " + JSON.stringify(configfile));
             if (process.arch == 'arm') {
-                await exec(['index.js', '--target', 'node8-linux-armv7', '--output', 'sigma']);
+                await exec(['package.json', '--target', 'host', '--output', 'sigma']);
                 console.log('\nCopy created executable file - [sigma] to target device.\nThis binary will run on linux ARMv7 platform.\n');
             } else {
                 shell.exec('cp -R ./node_modules/puppeteer/.local-chromium ./puppeteer');
