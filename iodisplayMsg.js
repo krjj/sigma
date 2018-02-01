@@ -25,6 +25,16 @@ var deviceInfo = {
 };
 var isloggedin = false;
 
+//logging 
+log = SimpleNodeLogger.createSimpleLogger({
+    logFilePath: path.join(os.homedir(), '.sigma', 'sigmalog.log'),
+    timestampFormat: 'YYYY-MM-DD HH:mm:ss.SSS'
+});
+
+log.setLevel('error');
+//
+
+
 if (store.get('messagesTS') != undefined) {
     messages_mrf_ts = store.get('messagesTS');
 }
@@ -211,7 +221,9 @@ async function sendDataMSEG(data) {
         messages_data = []; //clear the payload holder
         console.log('Send [MESSAGE_TAB ALL] request success');
     }).catch(function (err) {
-        console.log('Send [MESSAGE_TAB ALL] request failed');
+        if (err.statusCode == 500) {
+            log.error("Network Request Failed (MESSAGE_TAB ALL) | Server Response : ", err.response.body.Message);
+        }
     });
 }
 
@@ -244,9 +256,11 @@ async function sendDataIOM2(data) {
         json: true
     }
     rp(options).then(function (r) {
-        console.log('Send [IOM2] request success', 'ID', r.Model.ID);
+        console.log('Send [IOM2] request success', 'ID');
     }).catch(function (err) {
-        console.log('Send [IOM2] request failed');
+        if (err.statusCode == 500) {
+            log.error("Network Request Failed (IOM2) | Server Response : ", err.response.body.Message);
+        }
     });
 }
 

@@ -28,12 +28,15 @@ var addDelay = false;
 function updateLSR(data) {
 
     if (system_status_data_lsr == null) {
-        system_status_data_lsr = {
-            mode: data.Mode,
-            psi: data.PSI,
-            temperature: data.Temperature,
-            hasChanged: true
+        if (!/[-]/g.test(data.mode)) {
+            system_status_data_lsr = {
+                mode: data.Mode,
+                psi: data.PSI,
+                temperature: data.Temperature,
+                hasChanged: true
+            }
         }
+
     } else {
         if (system_status_data_lsr.hasChanged == false && (system_status_data_lsr.mode != data.Mode || system_status_data_lsr.temperature != data.Temperature || system_status_data_lsr.psi != data.PSI)) {
             console.log("Changed.", moment().format("YYYY-MM-DD hh:mm:ss.SSS"));
@@ -215,7 +218,7 @@ async function sendData(data) {
     };
     //console.log('Request made on', options.body.EndTime, ongoingRequests);
     rp(options).then(function (r) {
-            console.log('Send [system_status] request success', 'ID', r.Model.ID);
+            console.log('Send [system_status] request success');
         })
         .catch(function (err) {
             if (err.statusCode == 500) {
