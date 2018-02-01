@@ -7,6 +7,7 @@ const path = require('path');
 const store = require('data-store')('sigma-config', {
     cwd: path.join(os.homedir(), '.sigma')
 });
+const SimpleNodeLogger = require('simple-node-logger');
 
 var iom2_data = null;
 var iom2_recent_ts = Date.now();
