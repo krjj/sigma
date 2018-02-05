@@ -260,6 +260,7 @@ async function sendDataIOM2(data) {
         console.log('Send [IOM2] request success', 'ID');
     }).catch(function (err) {
         if (err.statusCode == 500) {
+            //console.log(err.response.body)
             log.error("Network Request Failed (IOM2) | Server Response : ", err.response.body.Message);
         }
     });
@@ -290,7 +291,8 @@ function toPayloadArr(tab, data) {
                 "MachineName": deviceInfo.machineName
             }
             let tts = Date.parse(ment.MessageDateTime);
-            if ((messages_mrf_ts[tab] > tts) || messages_mrf_ts[tab] == null) {
+            //console.log(tts, messages_mrf_ts[tab])
+            if ((tts > messages_mrf_ts[tab]) || messages_mrf_ts[tab] == null) {
                 payloadArr.push(ment);
             } else {
                 break;
