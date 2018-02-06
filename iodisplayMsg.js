@@ -44,7 +44,7 @@ async function run() {
     const browser = await puppeteer.launch({
         executablePath: config.brwExecPath,
         args: ["--no-sandbox"],
-        headless: false
+        headless: true
     }).catch((e) => {
         log.error("[iodisplayMsg] Cannot launch browser");
         setTimeout(() => {
