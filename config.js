@@ -1,7 +1,7 @@
 module.exports = {
     "login": {
-        "username": "admin123",
-        "password": "admin123"
+        "username": "",
+        "password": ""
     },
     "brwExecPath": "puppeteer/linux-497674/chrome-linux/chrome",
     "selectors": {
