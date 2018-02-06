@@ -44,7 +44,7 @@ async function run() {
     const browser = await puppeteer.launch({
         executablePath: config.brwExecPath,
         args: ["--no-sandbox"],
-        headless: true
+        headless: false
     }).catch((e) => {
         log.error("[iodisplayMsg] Cannot launch browser");
         setTimeout(() => {
@@ -230,24 +230,14 @@ async function sendDataMSEG(data) {
 
 async function sendDataIOM2(data) {
     let options = {
-        method: config.sendEndpoint.method,
-        url: config.sendEndpoint.url,
+        method: config.sendEndpointIOM2.method,
+        url: config.sendEndpointIOM2.url,
         headers: {
             'cache-control': 'no-cache',
             'content-type': 'application/json'
         },
         body: {
-            PSI: '',
-            Time: '',
-            Temperature: '',
-            Mode: '',
-            Key: '',
-            PA: '',
-            Run: '',
-            Load: '',
-            Maintenance: '',
-            StartTime: moment().format("YYYY-MM-DD hh:mm:ss.SSS"),
-            EndTime: moment().format("YYYY-MM-DD hh:mm:ss.SSS"),
+            EntryTime: moment().format("YYYY-MM-DD hh:mm:ss.SSS"),
             MachineID: deviceInfo.machineId,
             MachineName: deviceInfo.machineName,
             AIR200: data.AIR200,

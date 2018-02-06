@@ -152,6 +152,28 @@ var questions = [{
     },
     {
         type: 'input',
+        name: 'IOM2_url',
+        message: "Save IOM2 data api endpoint",
+        default: function () {
+            return "http://kaeser.appsmith.co.in/api/Reports/SaveIODisplayData";
+        },
+        validate: function (value) {
+            var pass = validator.isURL(value, {
+                protocols: ['http', 'https'],
+                allow_protocol_relative_urls: false
+            })
+
+            if (pass) {
+                if (!/\/$/.test(value)) {
+                    return true;
+                }
+            }
+
+            return 'Enter valid URL (should not end with /)';
+        }
+    },
+    {
+        type: 'input',
         name: 'sigma_mesg_url',
         message: "Save messages data api endpoint",
         default: function () {
@@ -204,6 +226,7 @@ inquirer.prompt(questions2).then(async (answers2) => {
         configfile.networkOutageMs = answers.delay_outage;
         configfile.getEndpoint.host = answers.sigma_url;
         configfile.sendEndpoint.url = answers.sigma_systat_url;
+        configfile.sendEndpointIOM2.url = answers.IOM2_url;
         configfile.sendEndpointMESG.url = answers.sigma_mesg_url;
 
         if (process.arch == 'arm') {
