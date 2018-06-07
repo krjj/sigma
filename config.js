@@ -33,7 +33,7 @@ module.exports = {
         "method": "POST"
     },
     "getEndpoint": {
-        "host": "http://103.7.83.35",
+        "host": "http://103.111.111.140",
         "path": "json.json"
     },
     "networkOutageMs": 60000
